@@ -8,8 +8,14 @@ class TestParser(unittest.TestCase):
             {"mentions": ["chris"]}),
         ("Good morning! (megusta) (coffee)",
             {"emoticons": ["megusta", "coffee"]}),
-        ("Olympics are starting soon; http://www.google.com",
+        ("Visit this site: http://www.google.com",
             {'links': [{'title': 'Google', 'url': 'http://www.google.com'}]}),
+        ("Visit this site: www.google.com",
+            {'links': [{'title': 'Google', 'url': 'www.google.com'}]}),
+        ("(toolargetobethebigtestimonial), @!@#,, ",
+            {}),
+        ('http://thispage.not.exists.beleive.me',
+         {'links': [{'url': 'http://thispage.not.exists.beleive.me', 'title': None}]}),
         ("""@bob @john (success) such a cool feature;
             https://twitter.com/jdorfman/status/430511497475670016""",
                  {'mentions': ['bob', 'john'],
@@ -19,6 +25,7 @@ class TestParser(unittest.TestCase):
                             ]
                   })
     ]
+
     def test_parse(self):
         for case, waited_res in self.CASES:
             res = parse_message(case, as_json=False)
