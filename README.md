@@ -1,6 +1,8 @@
 # hipchat-parser
 hipchat-like parser for text
 
+also go version (not final yet) https://github.com/ogir-ok/hipchat-parser-go
+
 # installation
 git clone https://github.com/ogir-ok/hipchat-parser.git
 
